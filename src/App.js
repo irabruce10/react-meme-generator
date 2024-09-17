@@ -21,22 +21,26 @@ export default function App() {
     getMemesApi();
   }, []);
 
-  function memesHandler() {
-    // const randomNumber = Math.floor(Math.random() * memeList.length);
-    // let randomMemeURL = memeList[randomNumber].attributes.data.attributes.url;
-    // setrandomMeme(randomMemeURL);
-    const rand = memeList[Math.floor(Math.random() * memeList.length)].url;
-    setRandomImg(rand);
+  // function memesHandler() {
+  //   // const randomNumber = Math.floor(Math.random() * memeList.length);
+  //   // let randomMemeURL = memeList[randomNumber].attributes.data.attributes.url;
+  //   // setrandomMeme(randomMemeURL);
+  //   // const rand = memeList[Math.floor(Math.random() * memeList.length)].url;
+  //   // setRandomImg(rand);
+  //   // Create an image element and append it to the body
+  //   // const img = document.createElement('img');
+  //   // img.src = rand;
+  //   // document.body.appendChild(img);
+  //   // console.log(rand);
+  // }
 
-    // Create an image element and append it to the body
-    // const img = document.createElement('img');
-    // img.src = rand;
-    // document.body.appendChild(img);
-    // console.log(rand);
-  }
+  const rand = memeList[Math.floor(Math.random() * memeList.length)].url;
+  setRandomImg(rand);
 
   function submitHandle(event) {
     event.preventDefault();
+    // const rand = memeList[Math.floor(Math.random() * memeList.length)].url;
+    // setRandomImg(rand);
 
     // const topText = event.target.elements.search.value;
     // const bottomText = event.target.elements.search.value;
@@ -44,8 +48,6 @@ export default function App() {
     // setRandomImg(`${rand}?top=${topText}&bottom=${bottomText}`);
     // event.target.elements.search.value = '';
   }
-
-  function enterLine(event) {}
 
   return (
     <div>
@@ -77,7 +79,7 @@ export default function App() {
       </form>
 
       <div>
-        <img src={randomImg} />
+        <img src={randomImg} data-test-id="meme-image" />
       </div>
     </div>
   );
