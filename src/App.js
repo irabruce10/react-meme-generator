@@ -11,6 +11,13 @@ export default function App() {
     setMemeList(url);
   }
 
+  const downloadMeme = () => {
+    const link = document.createElement('a');
+    link.href = memeList;
+    link.download = `${memeTemplate}.png`;
+    link.click();
+  };
+
   return (
     <div>
       <h1>React Meme Generator</h1>
@@ -50,6 +57,8 @@ export default function App() {
         {memeList && (
           <img src={memeList} data-test-id="meme-image" alt="Generated meme" />
         )}
+
+        <button onClick={downloadMeme}>Download</button>
       </div>
     </div>
   );
