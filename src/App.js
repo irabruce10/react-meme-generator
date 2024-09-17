@@ -1,14 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function App() {
-  const [memeList, setmemeList] = useState('');
+  const [memeList, setMemeList] = useState('');
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [memeTemplate, setMemeTemplate] = useState('');
+  const [memeTemplate, setMemeTemplate] = useState('Bruh');
 
   function generateMeme() {
     const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
-    setmemeList(url);
+    setMemeList(url);
   }
 
   return (
@@ -21,7 +21,6 @@ export default function App() {
           onChange={(event) => setTopText(event.target.value)}
           value={topText}
           placeholder="top text"
-          type="text"
         />
       </label>
       <br />
@@ -32,7 +31,6 @@ export default function App() {
           onChange={(event) => setBottomText(event.target.value)}
           value={bottomText}
           placeholder="bottom text"
-          type="text"
         />
       </label>
       <br />
@@ -40,7 +38,6 @@ export default function App() {
       <label htmlFor="meme-template">Meme template</label>
       <input
         id="meme-template"
-        type="text"
         value={memeTemplate}
         onChange={(event) => setMemeTemplate(event.target.value)}
       />
@@ -49,7 +46,11 @@ export default function App() {
 
       {/* <button type="submit">Fetch Memes</button> */}
 
-      <div>{memeList && <img src={memeList} data-test-id="meme-image" />}</div>
+      <div>
+        {memeList && (
+          <img src={memeList} data-test-id="meme-image" alt="Generated meme" />
+        )}
+      </div>
     </div>
   );
 }
