@@ -4,7 +4,7 @@ export default function App() {
   const [memeList, setMemeList] = useState('');
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [memeTemplate, setMemeTemplate] = useState('Bruh');
+  const [memeTemplate, setMemeTemplate] = useState('doge');
 
   function generateMeme() {
     const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
