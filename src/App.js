@@ -2,63 +2,18 @@ import { useState, useEffect } from 'react';
 
 export default function App() {
   const [memeList, setmemeList] = useState('');
-  const [randomImg, setRandomImg] = useState('');
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [memeTemplate, setMemeTemplate] = useState('doge');
-
-  const url = 'https://api.memegen.link/templates/';
-
-  // useEffect(() => {
-  //   async function getMemesApi() {
-  //     try {
-  //       const response = await fetch(url);
-  //       const data = await response.json();
-  //       setmemeList(data);
-  //     } catch (error) {
-  //       console.error('Error fetching memes:', error);
-  //     }
-  //   }
-  //   getMemesApi();
-  // }, []);
-
-  //   // function memesHandler() {
-  //   //   // const randomNumber = Math.floor(Math.random() * memeList.length);
-  //   //   // let randomMemeURL = memeList[randomNumber].attributes.data.attributes.url;
-  //   //   // setrandomMeme(randomMemeURL);
-  //   //   // const rand = memeList[Math.floor(Math.random() * memeList.length)].url;
-  //   //   // setRandomImg(rand);
-  //   //   // Create an image element and append it to the body
-  //   //   // const img = document.createElement('img');
-  //   //   // img.src = rand;
-  //   //   // document.body.appendChild(img);
-  //   //   // console.log(rand);
-  //   // }
+  const [memeTemplate, setMemeTemplate] = useState('');
 
   function generateMeme() {
-    // event.preventDefault();
-    // const rand = memeList[Math.floor(Math.random() * memeList.length)].url;
-
-    // const a = `{${rand}/`;
-
-    // console.log(rand);
-    // setRandomImg(rand);
-
     const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
     setmemeList(url);
-
-    console.log(url);
-
-    //     // const topText = event.target.elements.search.value;
-    //     // const bottomText = event.target.elements.search.value;
-    //     // const rand = memeList[Math.floor(Math.random() * memeList.length)].url;
-    //     // setRandomImg(`${rand}?top=${topText}&bottom=${bottomText}`);
-    //     // event.target.elements.search.value = '';
   }
 
   return (
     <div>
-      <h1>Memes</h1>
+      <h1>React Meme Generator</h1>
 
       <label>
         Top text:
