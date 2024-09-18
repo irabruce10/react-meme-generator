@@ -129,11 +129,10 @@ const MemeGenerator = () => {
     const encodedTopText = encodeURIComponent(topText);
     const encodedBottomText = encodeURIComponent(bottomText);
 
-    console.log(encodedTopText, encodedBottomText);
     const url = `https://memegen.link/${memeTemplate}/${encodedTopText}/${encodedBottomText}.png`;
-    setMemeUrl(url);
+
     const link = document.createElement('a');
-    link.href = memeUrl;
+    link.href = url;
     link.download = `${memeTemplate}.png`;
     link.target = '_blank';
     link.click();
@@ -163,7 +162,11 @@ const MemeGenerator = () => {
 
       {memeUrl === '' ? (
         <div>
-          <img data-test-id="meme-image" src={memeUrl} alt="Generated meme" />
+          <img
+            data-test-id="meme-image"
+            src={`https://memegen.link/images/${memeTemplate}/${topText}/${bottomText}.png`}
+            alt="Generated meme"
+          />
         </div>
       ) : (
         <img
