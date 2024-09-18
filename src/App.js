@@ -11,7 +11,7 @@ export default function App() {
   function generateMeme() {
     // const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
 
-    const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+    const url = `https://memegen.link/images/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
 
     setMemeList(url);
   }
@@ -19,15 +19,19 @@ export default function App() {
   const downloadMeme = () => {
     const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
     setMemeList(url);
+    console.log(url);
 
     const link = document.createElement('a');
     link.href = url;
+
+    console.log(link);
     // link.download = `${memeTemplate}/${topText}/${bottomText}.png`;
 
-    link.download = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+    link.download = `https://memegen.link/images/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
 
     console.log(link.download);
-    link.click();
+
+    // link.click();
   };
 
   return (
