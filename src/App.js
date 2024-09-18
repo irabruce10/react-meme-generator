@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function App() {
   const [memeList, setMemeList] = useState(
-    'https://example.com/default-meme.png',
+    'https://memegen.link/default-meme.png',
   );
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
@@ -14,8 +14,9 @@ export default function App() {
   }
 
   const downloadMeme = () => {
+    const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
     const link = document.createElement('a');
-    link.href = memeList;
+    link.href = url;
     link.download = `${memeTemplate}.png`;
     link.click();
   };
