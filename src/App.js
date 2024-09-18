@@ -117,14 +117,25 @@ const MemeGenerator = () => {
   };
 
   const generateMeme = () => {
-    const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+    const encodedTopText = encodeURIComponent(topText);
+    const encodedBottomText = encodeURIComponent(bottomText);
+
+    console.log(encodedTopText, encodedBottomText);
+    const url = `https://memegen.link/${memeTemplate}/${encodedTopText}/${encodedBottomText}.png`;
     setMemeUrl(url);
   };
 
   const downloadMeme = () => {
+    const encodedTopText = encodeURIComponent(topText);
+    const encodedBottomText = encodeURIComponent(bottomText);
+
+    console.log(encodedTopText, encodedBottomText);
+    const url = `https://memegen.link/${memeTemplate}/${encodedTopText}/${encodedBottomText}.png`;
+    setMemeUrl(url);
     const link = document.createElement('a');
     link.href = memeUrl;
     link.download = `${memeTemplate}.png`;
+    link.target = '_blank';
     link.click();
   };
 
@@ -161,7 +172,9 @@ const MemeGenerator = () => {
           alt="Generated meme"
         />
       )}
-      <button onClick={downloadMeme}>Download</button>
+      <button onClick={downloadMeme} disabled={memeUrl === ''}>
+        Download
+      </button>
     </div>
   );
 };
