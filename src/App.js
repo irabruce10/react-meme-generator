@@ -9,7 +9,10 @@ export default function App() {
   );
 
   function generateMeme() {
-    const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+    // const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+
+    const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+
     setMemeList(url);
   }
 
@@ -22,7 +25,9 @@ export default function App() {
     // We use `click()` to simulate a click on the link, triggering the download.
     const link = document.createElement('a');
     link.href = url;
-    link.download = `${memeTemplate}/${topText}/${bottomText}.png`;
+    // link.download = `${memeTemplate}/${topText}/${bottomText}.png`;
+
+    link.download = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
     link.click();
   };
 
