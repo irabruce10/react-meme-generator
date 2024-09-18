@@ -2,11 +2,11 @@ import { useState } from 'react';
 
 export default function App() {
   const [memeTemplate, setMemeTemplate] = useState('doge');
-  const [memeList, setMemeList] = useState(
-    `https://memegen.link/${memeTemplate}.png`,
-  );
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
+  const [memeList, setMemeList] = useState(
+    `https://memegen.link/${memeTemplate}//${topText}/${bottomText}.png`,
+  );
 
   function generateMeme() {
     const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
