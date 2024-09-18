@@ -91,88 +91,155 @@
 //     </div>
 //   );
 // }
-import React, { useEffect, useState } from 'react';
+// import React, { useEffect, useState } from 'react';
 
-const MemeGenerator = () => {
+// const MemeGenerator = () => {
+//   const [topText, setTopText] = useState('');
+//   const [bottomText, setBottomText] = useState('');
+//   const [memeTemplate, setMemeTemplate] = useState('doge');
+//   const [memeUrl, setMemeUrl] = useState('');
+
+//   const handleTopTextChange = (e) => {
+//     setTopText(e.target.value);
+//   };
+
+//   const handleBottomTextChange = (e) => {
+//     setBottomText(e.target.value);
+//   };
+
+//   const handleMemeTemplateChange = (e) => {
+//     setMemeTemplate(e.target.value);
+//   };
+
+//   useEffect(() => {
+//     const generateMeme = () => {
+//       const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+
+//       // const blob = await response.blob();
+//       // const url = URL.createObjectURL(blob);
+
+//       setMemeUrl(url);
+//     };
+
+//     generateMeme();
+//   }, [topText, bottomText, memeTemplate]);
+
+//   const downloadMeme = (e) => {
+//     e.preventDefault();
+//     const link = document.createElement('a');
+//     link.href = `https://memegen.link/images/${memeTemplate}/${topText}/${bottomText}.png`;
+//     link.download = `${memeTemplate}.png`;
+
+//     link.target = '_blank';
+//     console.log(link.href);
+//     console.log(link.download);
+//     link.click();
+//   };
+
+//   return (
+//     <div>
+//       <label htmlFor="top-text">Top text:</label>
+//       <input id="top-text" value={topText} onChange={handleTopTextChange} />
+//       <br />
+//       <br />
+
+//       <label htmlFor="bottom-text">Bottom text:</label>
+//       <input
+//         id="bottom-text"
+//         value={bottomText}
+//         onChange={handleBottomTextChange}
+//       />
+//       <br />
+//       <br />
+
+//       <label htmlFor="meme-template">Meme template:</label>
+//       <input
+//         id="meme-template"
+//         value={memeTemplate}
+//         onChange={handleMemeTemplateChange}
+//       />
+//       <br />
+//       <br />
+
+//       {memeUrl && (
+//         <div>
+//           <img data-test-id="meme-image" src={memeUrl} alt="Generated meme" />
+//         </div>
+//       )}
+
+//       <button onClick={downloadMeme}>Download</button>
+//     </div>
+//   );
+// };
+
+// export default MemeGenerator;
+
+import React, { useState } from 'react';
+import './App.css';
+
+const App = () => {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [memeTemplate, setMemeTemplate] = useState('doge');
-  const [memeUrl, setMemeUrl] = useState('');
+  const [template, setTemplate] = useState('doge');
+  const memeImageUrl = `https://memegen.link/${template}/${topText ? encodeURIComponent(topText) : ''}/${bottomText ? encodeURIComponent(bottomText) : ''}.png`;
 
-  const handleTopTextChange = (e) => {
-    setTopText(e.target.value);
+  const handleTemplateChange = (event) => {
+    setTemplate(event.target.value);
   };
 
-  const handleBottomTextChange = (e) => {
-    setBottomText(e.target.value);
-  };
-
-  const handleMemeTemplateChange = (e) => {
-    setMemeTemplate(e.target.value);
-  };
-
-  useEffect(() => {
-    const generateMeme = () => {
-      const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
-
-      // const blob = await response.blob();
-      // const url = URL.createObjectURL(blob);
-
-      setMemeUrl(url);
-    };
-
-    generateMeme();
-  }, [topText, bottomText, memeTemplate]);
-
-  const generateMeme = () => {
-    const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
-
-    setMemeUrl(url);
-  };
-
-  const downloadMeme = (e) => {
-    e.preventDefault();
+  const handleDownload = () => {
     const link = document.createElement('a');
-    link.href = memeUrl
-      ? `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`
-      : memeUrl;
-    link.download = `${memeTemplate}.png`;
-    link.target = '_blank';
-    console.log(link.href);
-    console.log(link.download);
+    link.href = memeImageUrl;
+    link.download = 'meme.png';
+    document.body.appendChild(link);
     link.click();
+    document.body.removeChild(link);
   };
 
   return (
-    <div>
-      <label htmlFor="top-text">Top text:</label>
-      <input id="top-text" value={topText} onChange={handleTopTextChange} />
-
-      <label htmlFor="bottom-text">Bottom text:</label>
-      <input
-        id="bottom-text"
-        value={bottomText}
-        onChange={handleBottomTextChange}
-      />
-
-      <label htmlFor="meme-template">Meme template:</label>
-      <input
-        id="meme-template"
-        value={memeTemplate}
-        onChange={handleMemeTemplateChange}
-      />
-
-      <button onClick={generateMeme}>Preview</button>
-
-      {memeUrl && (
-        <div>
-          <img data-test-id="meme-image" src={memeUrl} alt="Generated meme" />
-        </div>
-      )}
-
-      <button onClick={downloadMeme}>Download</button>
+    <div className="App">
+      <h1>Meme Generator</h1>
+      <div>
+        <label htmlFor="topText">Top text</label>
+        <input
+          id="topText"
+          value={topText}
+          onChange={(e) => setTopText(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="bottomText">Bottom text</label>
+        <input
+          id="bottomText"
+          value={bottomText}
+          onChange={(e) => setBottomText(e.target.value)}
+        />
+      </div>
+      <div>
+        <label htmlFor="template">Meme template</label>
+        <input
+          id="template"
+          value={template}
+          onChange={handleTemplateChange}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              setTemplate(e.target.value);
+            }
+          }}
+        />
+      </div>
+      <div>
+        <h2>Preview:</h2>
+        <img
+          data-test-id="meme-image"
+          src={memeImageUrl}
+          alt="Meme Preview"
+          style={{ maxWidth: '500px', maxHeight: '500px' }}
+        />
+      </div>
+      <button onClick={handleDownload}>Download</button>
     </div>
   );
 };
 
-export default MemeGenerator;
+export default App;
