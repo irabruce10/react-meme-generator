@@ -56,7 +56,12 @@ export default function App() {
           <img data-test-id="meme-image" src={memeList} alt="Generated meme" />
         )} */}
 
-        <img data-test-id="meme-image" src={memeList} alt="Generated meme" />
+        <img
+          data-test-id="meme-image"
+          src={memeList}
+          alt="Generated meme"
+          loading="lazy"
+        />
 
         <button onClick={downloadMeme}>Download</button>
       </div>
