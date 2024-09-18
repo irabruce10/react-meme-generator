@@ -1,7 +1,9 @@
 import { useState } from 'react';
 
 export default function App() {
-  const [memeList, setMemeList] = useState('');
+  const [memeList, setMemeList] = useState(
+    'https://example.com/default-meme.png',
+  );
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [memeTemplate, setMemeTemplate] = useState('doge');
