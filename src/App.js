@@ -5,7 +5,7 @@ export default function App() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [memeList, setMemeList] = useState(
-    `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`,
+    `https://memegen.link/images/${memeTemplate}/${topText}/${bottomText}.png`,
   );
 
   function generateMeme() {
@@ -17,17 +17,18 @@ export default function App() {
   }
 
   const downloadMeme = () => {
-    const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
-    setMemeList(url);
-    console.log(url);
+    // const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+    // setMemeList(url);
+    // console.log(url);
+    // console.log(memeList);
 
     const link = document.createElement('a');
-    link.href = url;
+    link.href = memeList;
 
     console.log(link);
     // link.download = `${memeTemplate}/${topText}/${bottomText}.png`;
 
-    link.download = `https://memegen.link/images/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+    link.download = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
 
     console.log(link.download);
 
