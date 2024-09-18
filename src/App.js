@@ -52,16 +52,24 @@ export default function App() {
       <button onClick={generateMeme}>Preview</button>
 
       <div>
-        {/* {memeList && (
+        {memeList === '' ? (
           <img data-test-id="meme-image" src={memeList} alt="Generated meme" />
-        )} */}
+        ) : (
+          <img
+            data-test-id="meme-image"
+            src={`https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`}
+            alt="Generated meme"
+          />
+        )}
 
-        <img
+        {/* <img
           data-test-id="meme-image"
           src={memeList}
           alt="Generated meme"
           loading="lazy"
-        />
+          width="200"
+          height="200"
+        /> */}
 
         <button onClick={downloadMeme}>Download</button>
       </div>
