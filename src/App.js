@@ -91,7 +91,7 @@
 //     </div>
 //   );
 // }
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const MemeGenerator = () => {
   const [topText, setTopText] = useState('');
@@ -111,11 +111,21 @@ const MemeGenerator = () => {
     setMemeTemplate(e.target.value);
   };
 
+  useEffect(() => {
+    const generateMeme = () => {
+      const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+
+      // const blob = await response.blob();
+      // const url = URL.createObjectURL(blob);
+
+      setMemeUrl(url);
+    };
+
+    generateMeme();
+  }, [topText, bottomText, memeTemplate]);
+
   const generateMeme = () => {
     const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
-
-    // const blob = await response.blob();
-    // const url = URL.createObjectURL(blob);
 
     setMemeUrl(url);
   };
@@ -154,9 +164,11 @@ const MemeGenerator = () => {
 
       <button onClick={generateMeme}>Preview</button>
 
-      <div>
-        <img data-test-id="meme-image" src={memeUrl} alt="Generated meme" />
-      </div>
+      {memeUrl && (
+        <div>
+          <img data-test-id="meme-image" src={memeUrl} alt="Generated meme" />
+        </div>
+      )}
 
       <button onClick={downloadMeme}>Download</button>
     </div>
