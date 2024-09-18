@@ -31,8 +31,6 @@ export default function App() {
     link.download = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
 
     console.log(link.download);
-
-    link.click();
   };
 
   return (
