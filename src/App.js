@@ -9,25 +9,24 @@ export default function App() {
   );
 
   function generateMeme() {
-    const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+    // const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
 
-    // const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+    const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
 
     setMemeList(url);
   }
 
   const downloadMeme = () => {
-    const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+    const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
     setMemeList(url);
 
-    // Create a link element to download the image.
-    // This will trigger the browser's download functionality.
-    // We use `click()` to simulate a click on the link, triggering the download.
     const link = document.createElement('a');
     link.href = url;
     // link.download = `${memeTemplate}/${topText}/${bottomText}.png`;
 
-    link.download = `${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+    link.download = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+
+    console.log(link.download);
     link.click();
   };
 
@@ -38,7 +37,7 @@ export default function App() {
       <label>
         Top text:
         <input
-          onChange={(event) => setTopText(event.target.value)}
+          onChange={(event) => setTopText(event.currentTarget.value)}
           value={topText}
           placeholder="top text"
         />
@@ -48,7 +47,7 @@ export default function App() {
       <label>
         Bottom text:
         <input
-          onChange={(event) => setBottomText(event.target.value)}
+          onChange={(event) => setBottomText(event.currentTarget.value)}
           value={bottomText}
           placeholder="bottom text"
         />
@@ -59,7 +58,7 @@ export default function App() {
       <input
         id="meme-template"
         value={memeTemplate}
-        onChange={(event) => setMemeTemplate(event.target.value)}
+        onChange={(event) => setMemeTemplate(event.currentTarget.value)}
       />
 
       <button onClick={generateMeme}>Preview</button>
