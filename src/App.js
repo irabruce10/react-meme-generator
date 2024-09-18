@@ -5,7 +5,7 @@ export default function App() {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
   const [memeList, setMemeList] = useState(
-    `https://memegen.link/${memeTemplate}//${topText}/${bottomText}.png`,
+    `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`,
   );
 
   function generateMeme() {
