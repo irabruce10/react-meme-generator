@@ -14,7 +14,12 @@ export default function App() {
   }
 
   const downloadMeme = () => {
-    const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+    // const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+    const url = memeList;
+
+    // Create a link element to download the image.
+    // This will trigger the browser's download functionality.
+    // We use `click()` to simulate a click on the link, triggering the download.
     const link = document.createElement('a');
     link.href = url;
     link.download = `${memeTemplate}/${topText}/${bottomText}.png`;
