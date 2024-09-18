@@ -9,16 +9,16 @@ export default function App() {
   );
 
   function generateMeme() {
-    // const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+    const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
 
-    const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+    // const url = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
 
     setMemeList(url);
   }
 
   const downloadMeme = () => {
-    // const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
-    const url = memeList;
+    const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+    setMemeList(url);
 
     // Create a link element to download the image.
     // This will trigger the browser's download functionality.
@@ -27,7 +27,7 @@ export default function App() {
     link.href = url;
     // link.download = `${memeTemplate}/${topText}/${bottomText}.png`;
 
-    link.download = `https://memegen.link/${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
+    link.download = `${memeTemplate}/${encodeURIComponent(topText)}/${encodeURIComponent(bottomText)}.png`;
     link.click();
   };
 
