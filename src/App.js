@@ -153,21 +153,37 @@ const MemeGenerator = () => {
     generateMeme();
   }, [topText, bottomText, memeTemplate]);
 
-  const downloadMeme = (e) => {
-    e.preventDefault();
-
+  const downloadMeme = (url, name = 'memes') => {
     console.log(memeUrl);
 
-    const link = document.createElement('a');
+    return fetch(memeUrl)
+      .then((resp) => resp.blob())
+      .then((blob) => {
+        const urls = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = urls;
+        a.download = name;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
 
-    link.href = memeUrl;
-    link.download = `${memeTemplate}.png`;
+        return Promise.resolve();
+      });
 
-    link.target = '_blank';
+    // const link = document.createElement('a');
 
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    // link.href = memeUrl;
+
+    // const filename = memeUrl.split('/').pop();
+
+    // link.download = filename;
+
+    // link.target = '_blank';
+
+    // document.body.appendChild(link);
+    // link.click();
+    // document.body.removeChild(link);
   };
 
   return (
