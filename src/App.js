@@ -156,20 +156,11 @@ const MemeGenerator = () => {
   const downloadMeme = (e) => {
     e.preventDefault();
 
-    const link = document.createElement('a');
-    // link.href = `https://memegen.link/images/${memeTemplate}/${topText}/${bottomText}.png`;
+    console.log(memeUrl);
 
-    if (topText === '' && bottomText === '') {
-      link.href = `https://memegen.link/${memeTemplate}.png`;
-      console.log('tmpl', link.href);
-    } else if (topText !== '') {
-      link.href = `https://memegen.link/${memeTemplate}/${topText}.png`;
-      console.log('top', link.href);
-    } else if (bottomText !== '') {
-      link.href = `https://memegen.link/${memeTemplate}/${bottomText}.png`;
-      console.log('btm', link.href);
-    }
-    console.log(link.href);
+    const link = document.createElement('a');
+
+    link.href = memeUrl;
     link.download = `${memeTemplate}.png`;
 
     link.target = '_blank';
