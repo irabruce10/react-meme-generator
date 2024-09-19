@@ -137,6 +137,10 @@ const MemeGenerator = () => {
       } else if (bottomText !== '' && topText === '') {
         url = `https://memegen.link/${memeTemplate}/${bottomText}.png`;
         console.log('btm', url);
+      } else if (topText !== '' && bottomText !== '') {
+        url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+      } else if (memeTemplate === '') {
+        alert('Please add template');
       } else {
         url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
       }
