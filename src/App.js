@@ -109,7 +109,7 @@ import React, { useEffect, useState } from 'react';
 const MemeGenerator = () => {
   const [topText, setTopText] = useState('');
   const [bottomText, setBottomText] = useState('');
-  const [memeTemplate, setMemeTemplate] = useState('doge');
+  const [memeTemplate, setMemeTemplate] = useState('aag');
   const [memeUrl, setMemeUrl] = useState('');
 
   const handleTopTextChange = (e) => {
