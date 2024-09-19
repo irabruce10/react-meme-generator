@@ -126,12 +126,22 @@ const MemeGenerator = () => {
 
   useEffect(() => {
     const generateMeme = () => {
-      const url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+      let url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
 
-      // const blob = await response.blob();
-      // const url = URL.createObjectURL(blob);
+      if (topText === '' && bottomText === '') {
+        url = `https://memegen.link/${memeTemplate}.png`;
+        console.log('tmpl', url);
+      } else if (topText !== '') {
+        url = `https://memegen.link/${memeTemplate}/${topText}.png`;
+        console.log('top', url);
+      } else if (bottomText !== '') {
+        url = `https://memegen.link/${memeTemplate}/${bottomText}.png`;
+        console.log('btm', url);
+      }
 
       setMemeUrl(url);
+
+      console.log(url);
     };
 
     generateMeme();
@@ -143,7 +153,6 @@ const MemeGenerator = () => {
     const link = document.createElement('a');
     // link.href = `https://memegen.link/images/${memeTemplate}/${topText}/${bottomText}.png`;
 
-    link.href = memeUrl;
     if (topText === '' && bottomText === '') {
       link.href = `https://memegen.link/${memeTemplate}.png`;
       console.log('tmpl', link.href);
