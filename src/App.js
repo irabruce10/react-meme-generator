@@ -126,23 +126,23 @@ const MemeGenerator = () => {
 
   useEffect(() => {
     const generateMeme = () => {
-      let url = `https://memegen.link/images/${memeTemplate}/${topText ? encodeURIComponent(topText) : 'add'}/${bottomText ? encodeURIComponent(bottomText) : 'sad'}.png`;
+      let url = `https://api.memegen.link/images/${memeTemplate}/${topText ? encodeURIComponent(topText) : ''}/${bottomText ? encodeURIComponent(bottomText) : ''}.png`;
 
       if (topText === '' && bottomText === '') {
-        url = `https://memegen.link/${memeTemplate}.png`;
+        url = `https://api.memegen.link/${memeTemplate}.png`;
         console.log('tmpl', url);
       } else if (topText !== '' && bottomText === '') {
-        url = `https://memegen.link/${memeTemplate}/${topText}.png`;
+        url = `https://api.memegen.link/${memeTemplate}/${topText}.png`;
         console.log('top', url);
       } else if (bottomText !== '' && topText === '') {
-        url = `https://memegen.link/${memeTemplate}/${bottomText}.png`;
+        url = `https://api.memegen.link/${memeTemplate}/${bottomText}.png`;
         console.log('btm', url);
       } else if (topText !== '' && bottomText !== '') {
-        url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+        url = `https://api.memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
       } else if (memeTemplate === '') {
         alert('Please add template');
       } else {
-        url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+        url = `https://api.memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
       }
 
       setMemeUrl(url);
