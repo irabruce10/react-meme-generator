@@ -126,7 +126,7 @@ const MemeGenerator = () => {
 
   useEffect(() => {
     const generateMeme = () => {
-      let url = `https://memegen.link/${memeTemplate}/${topText ? encodeURIComponent(topText) : 'add'}/${bottomText ? encodeURIComponent(bottomText) : 'sad'}.png`;
+      let url = `https://memegen.link/images/${memeTemplate}/${topText ? encodeURIComponent(topText) : 'add'}/${bottomText ? encodeURIComponent(bottomText) : 'sad'}.png`;
 
       if (topText === '' && bottomText === '') {
         url = `https://memegen.link/${memeTemplate}.png`;
