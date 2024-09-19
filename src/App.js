@@ -1,4 +1,9 @@
-import React, { useEffect, useState } from 'react';
+// Importing necessary React hooks
+
+import { useEffect, useState } from 'react';
+
+import './App.css';
+// Defining the MemeGenerator component
 
 const MemeGenerator = () => {
   const [topText, setTopText] = useState('');
@@ -6,31 +11,18 @@ const MemeGenerator = () => {
   const [memeTemplate, setMemeTemplate] = useState('aag');
   const [memeUrl, setMemeUrl] = useState('');
 
-  const handleTopTextChange = (e) => {
-    setTopText(e.target.value);
-  };
-
-  const handleBottomTextChange = (e) => {
-    setBottomText(e.target.value);
-  };
-
-  const handleMemeTemplateChange = (e) => {
-    setMemeTemplate(e.target.value);
-  };
+  // Using the useEffect hook to generate the meme URL whenever the topText, bottomText, or memeTemplate state variables change
 
   useEffect(() => {
     const generateMeme = () => {
       let url = `https://api.memegen.link/${memeTemplate}/${topText ? encodeURIComponent(topText) : ''}/${bottomText ? encodeURIComponent(bottomText) : ''}.png`;
-
+      //
       if (topText === '' && bottomText === '') {
         url = `https://api.memegen.link/images/${memeTemplate}.png`;
-        console.log('tmpl', url);
       } else if (topText !== '' && bottomText === '') {
         url = `https://api.memegen.link/images/${memeTemplate}/${topText}.png`;
-        console.log('top', url);
       } else if (bottomText !== '' && topText === '') {
         url = `https://api.memegen.link/images/${memeTemplate}/${bottomText}.png`;
-        console.log('btm', url);
       } else if (topText !== '' && bottomText !== '') {
         url = `https://api.memegen.link/images/${memeTemplate}/${topText}/${bottomText}.png`;
       } else if (memeTemplate === '') {
@@ -40,16 +32,14 @@ const MemeGenerator = () => {
       }
 
       setMemeUrl(url);
-
-      console.log(url);
     };
 
     generateMeme();
   }, [topText, bottomText, memeTemplate]);
 
-  const downloadMeme = (url, name) => {
-    console.log(memeUrl);
+  // Downloding the template with the name
 
+  const downloadMeme = (url, name) => {
     return fetch(memeUrl)
       .then((resp) => resp.blob())
       .then((blob) => {
@@ -67,30 +57,31 @@ const MemeGenerator = () => {
   };
 
   return (
-    <div>
+    // The component renders the UI
+    <div className="meme-generator">
       <h1>React Meme Generator</h1>
       <label htmlFor="top-text">Top text:</label>
-      <input id="top-text" value={topText} onChange={handleTopTextChange} />
-      <br />
-      <br />
+      <input
+        placeholder="Enter a top Text"
+        id="top-text"
+        value={topText}
+        onChange={(e) => setTopText(e.target.value)}
+      />
 
       <label htmlFor="bottom-text">Bottom text:</label>
       <input
+        placeholder="Enter bottom Text"
         id="bottom-text"
         value={bottomText}
-        onChange={handleBottomTextChange}
+        onChange={(e) => setBottomText(e.target.value)}
       />
-      <br />
-      <br />
 
       <label htmlFor="meme-template">Meme template:</label>
       <input
         id="meme-template"
         value={memeTemplate}
-        onChange={handleMemeTemplateChange}
+        onChange={(e) => setMemeTemplate(e.target.value)}
       />
-      <br />
-      <br />
 
       {memeUrl && (
         <div>
@@ -102,7 +93,7 @@ const MemeGenerator = () => {
           />
         </div>
       )}
-
+      {/**/}
       <button onClick={downloadMeme}>Download</button>
     </div>
   );
