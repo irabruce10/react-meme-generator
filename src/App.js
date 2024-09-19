@@ -126,15 +126,15 @@ const MemeGenerator = () => {
 
   useEffect(() => {
     const generateMeme = () => {
-      let url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
+      let url = `https://memegen.link/${memeTemplate}/${topText ? encodeURIComponent(topText) : 'add'}/${bottomText ? encodeURIComponent(bottomText) : 'sad'}.png`;
 
       if (topText === '' && bottomText === '') {
         url = `https://memegen.link/${memeTemplate}.png`;
         console.log('tmpl', url);
-      } else if (topText !== '') {
+      } else if (topText !== '' && bottomText === '') {
         url = `https://memegen.link/${memeTemplate}/${topText}.png`;
         console.log('top', url);
-      } else if (bottomText !== '') {
+      } else if (bottomText !== '' && topText === '') {
         url = `https://memegen.link/${memeTemplate}/${bottomText}.png`;
         console.log('btm', url);
       } else {
