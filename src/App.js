@@ -137,6 +137,8 @@ const MemeGenerator = () => {
       } else if (bottomText !== '') {
         url = `https://memegen.link/${memeTemplate}/${bottomText}.png`;
         console.log('btm', url);
+      } else {
+        url = `https://memegen.link/${memeTemplate}/${topText}/${bottomText}.png`;
       }
 
       setMemeUrl(url);
@@ -169,7 +171,8 @@ const MemeGenerator = () => {
     link.target = '_blank';
 
     document.body.appendChild(link);
-    // link.click();
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
